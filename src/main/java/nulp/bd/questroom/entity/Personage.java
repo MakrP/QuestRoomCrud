@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "character")
-public class Character implements Serializable {
+@Table(name = "personage")
+public class Personage implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,8 +25,8 @@ public class Character implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "actor_character",
-            joinColumns = @JoinColumn(name = "Character_id", referencedColumnName = "id"),
+            name = "actor_personage",
+            joinColumns = @JoinColumn(name = "Personage_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "Employee_id", referencedColumnName = "id")
     )
     private List<Employee> playedEmployee;
@@ -53,8 +53,8 @@ public class Character implements Serializable {
         return title;
     }
 
-    public void setPayment(Integer paymant) {
-        this.payment = paymant;
+    public void setPayment(Integer payment) {
+        this.payment = payment;
     }
 
     public Integer getPayment() {

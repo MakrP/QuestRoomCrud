@@ -8,27 +8,27 @@
 <body>
 <div align="center">
     <h1>Characters</h1>
-    <a href="/character/add">Add New Character</a>
+    <a href="/personage/add">Add New Personage</a>
     <br/><br/>
     <table border="1" cellpadding="10">
         <thead>
         <tr>
-            <th>Character ID</th>
+            <th>Personage ID</th>
             <th>Title</th>
             <th>Payment</th>
             <th>Room</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="character : ${characters}">
-            <td th:text="${character.id}">Character ID</td>
-            <td th:text="${character.title}">Title</td>
-            <td th:text="${character.payment}">Payment</td>
-            <td th:text="${character.room.title}">Room</td>
+        <tr th:each="personage : ${personages}">
+            <td th:text="${personage.id}">Personage ID</td>
+            <td th:text="${personage.title}">Title</td>
+            <td th:text="${personage.payment}">Payment</td>
+            <td th:text="${personage.room.title}">Room</td>
             <td>
-                <a th:href="@{'/edit/' + ${character.id}}">Edit</a>
+                <a th:href="@{'/edit/' + ${personage.id}}">Edit</a>
                 &nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/delete/' + ${character.id}}">Delete</a>
+                <a th:href="@{'/delete/' + ${personage.id}}">Delete</a>
             </td>
         </tr>
         </tbody>

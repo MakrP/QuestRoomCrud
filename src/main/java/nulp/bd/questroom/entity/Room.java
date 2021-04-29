@@ -50,7 +50,7 @@ public class Room implements Serializable {
 
 
     @OneToMany(mappedBy = "room")
-    List<Character> characters;
+    List<Personage> personages;
 
 
     public void setId(Integer id) {

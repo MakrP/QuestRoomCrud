@@ -42,7 +42,7 @@ public class Employee implements Serializable {
             joinColumns = @JoinColumn(name = "Employee_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "Character_id", referencedColumnName = "id")
     )
-    private List<Character> playedCharacters;
+    private List<Personage> playedPersonages;
 
 
     public void setId(Integer id) {
@@ -101,12 +101,12 @@ public class Employee implements Serializable {
         this.institution = institution;
     }
 
-    public List<Character> getPlayedCharacters() {
-        return playedCharacters;
+    public List<Personage> getPlayedCharacters() {
+        return playedPersonages;
     }
 
-    public void setPlayedCharacters(List<Character> playedCharacters) {
-        this.playedCharacters = playedCharacters;
+    public void setPlayedCharacters(List<Personage> playedPersonages) {
+        this.playedPersonages = playedPersonages;
     }
 
     @Override

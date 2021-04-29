@@ -1,7 +1,7 @@
 package nulp.bd.questroom.service;
 
-import nulp.bd.questroom.entity.Character;
-import nulp.bd.questroom.repository.CharacterRepository;
+import nulp.bd.questroom.entity.Personage;
+import nulp.bd.questroom.repository.PersonageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,19 +10,19 @@ import java.util.List;
 
 @Transactional
 @Service
-public class CharacterService {
+public class PersonageService {
     @Autowired
-    private CharacterRepository repository;
+    private PersonageRepository repository;
 
-    public List<Character> getAll() {
+    public List<Personage> getAll() {
         return repository.findAll();
     }
 
-    public void save(Character character) {
-        repository.save(character);
+    public void save(Personage personage) {
+        repository.save(personage);
     }
 
-    public Character get(int id) {
+    public Personage get(int id) {
         return repository.findById(id).get();
     }
 
