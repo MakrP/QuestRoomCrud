@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Product Manager</title>
+</head>
+<body>
+<div align="center">
+    <h1>Find Out Methods</h1>
+    <a href="/fom/add">Create New Find Out Method</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Find Out Method ID</th>
+            <th>Title</th>
+            <th>Make Clients</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="method : ${methods}">
+            <td th:text="${method.id}">Method ID</td>
+            <td th:text="${method.title}">Title</td>
+            <td th:text="${method.makeClients.size()}">Make Clients</td>
+            <td>
+                <a th:href="@{'/edit/' + ${method.id}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete/' + ${method.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

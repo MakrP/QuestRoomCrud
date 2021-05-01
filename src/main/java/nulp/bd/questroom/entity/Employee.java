@@ -6,6 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "employee")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;

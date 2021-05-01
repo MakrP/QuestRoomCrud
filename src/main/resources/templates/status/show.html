@@ -7,24 +7,24 @@
 </head>
 <body>
 <div align="center">
-    <h1>Subjects</h1>
-    <a href="/type/add">Create New Subject</a>
+    <h1>Statuses</h1>
+    <a href="/status/add">Create New Status</a>
     <br/><br/>
     <table border="1" cellpadding="10">
         <thead>
         <tr>
-            <th>Subject ID</th>
+            <th>Status ID</th>
             <th>Title</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="subject : ${subjects}">
-            <td th:text="${subject.id}">Subject ID</td>
-            <td th:text="${subject.title}">Title</td>
+        <tr th:each="status : ${statuses}">
+            <td th:text="${status.id}">Status ID</td>
+            <td th:text="${status.title}">Title</td>
             <td>
-                <a th:href="@{'/edit/' + ${subject.id}}">Edit</a>
+                <a th:href="@{'/edit/' + ${status.id}}">Edit</a>
                 &nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/delete/' + ${subject.id}}">Delete</a>
+                <a th:href="@{'/delete/' + ${status.id}}">Delete</a>
             </td>
         </tr>
         </tbody>
