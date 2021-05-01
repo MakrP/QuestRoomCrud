@@ -3,10 +3,7 @@ package nulp.bd.questroom.controller;
 import nulp.bd.questroom.entity.Inventory;
 import nulp.bd.questroom.entity.Personage;
 import nulp.bd.questroom.entity.Room;
-import nulp.bd.questroom.service.InstitutionService;
-import nulp.bd.questroom.service.InventoryService;
-import nulp.bd.questroom.service.PersonageService;
-import nulp.bd.questroom.service.RoomService;
+import nulp.bd.questroom.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,12 +24,15 @@ public class InventoryController {
     @Autowired
     private InstitutionService institutionService;
 
+    @Autowired
+    private InventoryTypeService inventoryTypeService;
+
 
     @RequestMapping("/inventory")
     public String showCharacters(Model model) {
         List<Inventory> inventories = service.getAll();
         model.addAttribute("inventories", inventories);
-        return "personage/show";
+        return "inventory/show";
     }
 
     @RequestMapping("/inventory/add")
@@ -41,12 +41,12 @@ public class InventoryController {
         List<Room> rooms = roomService.getAll();
         model.addAttribute("personage", personage);
         model.addAttribute("rooms", rooms);
-        return "personage/add";
+        return "inventory/add";
     }
 
-    @RequestMapping(value = "/personage/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/inventory/save", method = RequestMethod.POST)
     public String saveCharacter(@ModelAttribute("inventory") Inventory inventory) {
         service.save(inventory);
-        return "redirect:/personage";
+        return "redirect:/inventory";
     }
 }

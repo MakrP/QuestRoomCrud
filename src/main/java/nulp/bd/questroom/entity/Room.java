@@ -44,13 +44,13 @@ public class Room implements Serializable {
     @ManyToMany
     @JoinTable(
             name="institution_room",
-            joinColumns = @JoinColumn(name ="Room_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name ="Institution_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name ="Room_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name ="Institution_id",referencedColumnName = "id"))
     private List<Institution> institutionsInclude;
 
 
     @OneToMany(mappedBy = "room")
-    List<Personage> personages;
+    private List<Personage> personages;
 
 
     public void setId(Integer id) {
@@ -146,5 +146,13 @@ public class Room implements Serializable {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public List<Personage> getPersonages() {
+        return personages;
+    }
+
+    public void setPersonages(List<Personage> personages) {
+        this.personages = personages;
     }
 }

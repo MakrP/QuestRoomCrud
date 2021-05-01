@@ -2,11 +2,13 @@ package nulp.bd.questroom.controller;
 
 
 import nulp.bd.questroom.entity.Institution;
+import nulp.bd.questroom.entity.Room;
 import nulp.bd.questroom.service.InstitutionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,9 +22,17 @@ public class InstitutionController {
 
     @RequestMapping("/institution")
     public String showInstitutions(Model model) {
-        List<Institution> listProducts = service.getAll();
-        model.addAttribute("institutions", listProducts);
+        List<String> cities = service.getAllCities();
+        model.addAttribute("cities", cities);
+        model.addAttribute("service",service);
         return "institution/show";
+    }
+
+    @RequestMapping("/institution/{id}/rooms")
+    public String showInstitutionInfo(@PathVariable Integer id,Model model) {
+        Institution institution = service.get(id);
+        model.addAttribute("institution",institution);
+        return "room/show";
     }
 
     @RequestMapping("/institution/add")

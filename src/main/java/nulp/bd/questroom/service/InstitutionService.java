@@ -30,4 +30,13 @@ public class InstitutionService {
     public void delete(int id) {
         repository.deleteById(id);
     }
+
+    public List<String> getAllCities() {
+        return repository.getCities();
+    }
+    public List<Institution> getAllByCity(String city) {
+        return repository.getAllByCity(city);
+    }
+
+
 }

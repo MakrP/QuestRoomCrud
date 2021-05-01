@@ -1,6 +1,7 @@
 package nulp.bd.questroom.service;
 
 
+import nulp.bd.questroom.entity.Institution;
 import nulp.bd.questroom.entity.Reservation;
 import nulp.bd.questroom.entity.Room;
 import nulp.bd.questroom.repository.ReservationRepository;
@@ -30,6 +31,10 @@ public class ReservationService {
 
     public void delete(int id) {
         repository.deleteById(id);
+    }
+
+    public List<Reservation> getByInstitutionAndRoom(Institution institution, Room room) {
+        return repository.getAllByInstitutionAndRoom(institution,room);
     }
 
 }

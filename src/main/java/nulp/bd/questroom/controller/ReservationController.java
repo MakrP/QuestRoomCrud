@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,16 +31,20 @@ public class ReservationController {
     @Autowired
     private StatusService statusService;
 
-    @RequestMapping("/reservation")
-    public String showRooms(Model model) {
-        List<Reservation> reservations = service.getAll();
+    @RequestMapping("/institution/{institutionId}/room/{roomId}/reservation")
+    public String showRooms(@PathVariable Integer institutionId,@PathVariable Integer roomId, Model model) {
+        List<Reservation> reservations = service.getByInstitutionAndRoom(institutionService.get(institutionId),
+                                                                         roomService.get(roomId));
         model.addAttribute("reservations", reservations);
         return "reservation/show";
     }
 
-    @RequestMapping("/reservation/add")
-    public String newRoomPage(Model model) {
+
+    @RequestMapping("/institution/{institutionId}/room/{roomId}/reservation/add")
+    public String newRoomPage(@PathVariable Integer institutionId,@PathVariable Integer roomId,Model model) {
         Reservation reservation = new Reservation();
+        reservation.setRoom(roomService.get(roomId));
+        reservation.setInstitution(institutionService.get(institutionId));
         List<Institution> institutions = institutionService.getAll();
         List<Room> rooms = roomService.getAll();
         List<Client> clients = clientService.getAll();
@@ -53,8 +58,9 @@ public class ReservationController {
     @RequestMapping(value = "/reservation/save", method = RequestMethod.POST)
     public String saveRoom(@ModelAttribute("reservation") Reservation reservation) {
         reservation.setRegistrationDate(new Date());
-        reservation.setStatus(statusService.getByTitle("NOT COMPLETED"));
+        reservation.setStatus(statusService.getByTitle("NEED ACTORS"));
         service.save(reservation);
-        return "redirect:/reservation";
+        return "institution/" + reservation.getInstitution().getId() +
+                "/room/" + reservation.getRoom().getId() + "/reservation";
     }
 }

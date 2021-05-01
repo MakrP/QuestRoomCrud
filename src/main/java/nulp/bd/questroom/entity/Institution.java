@@ -6,15 +6,30 @@ import java.util.List;
 
 @Entity
 public class Institution {
-    private int id;
-    private String city;
-    private String street;
-    private int number;
-    private List<Employee> employees;
-
-
     @Id
     @Column(name = "id", nullable = false)
+    private int id;
+    @Basic
+    @Column(name = "city", nullable = false, length = 45)
+    private String city;
+    @Basic
+    @Column(name = "street", nullable = false, length = 45)
+    private String street;
+    @Basic
+    @Column(name = "number", nullable = false)
+    private int number;
+
+    @OneToMany(mappedBy = "institution")
+    private List<Employee> employees;
+
+    @ManyToMany
+    @JoinTable(
+            name="institution_room",
+            joinColumns = @JoinColumn(name ="Institution_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name ="Room_id", referencedColumnName = "id"))
+    private List<Room> includeRooms;
+
+
     public int getId() {
         return id;
     }
@@ -23,8 +38,6 @@ public class Institution {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "city", nullable = false, length = 45)
     public String getCity() {
         return city;
     }
@@ -33,8 +46,6 @@ public class Institution {
         this.city = city;
     }
 
-    @Basic
-    @Column(name = "street", nullable = false, length = 45)
     public String getStreet() {
         return street;
     }
@@ -43,8 +54,6 @@ public class Institution {
         this.street = street;
     }
 
-    @Basic
-    @Column(name = "number", nullable = false)
     public int getNumber() {
         return number;
     }
@@ -53,17 +62,9 @@ public class Institution {
         this.number = number;
     }
 
-    @OneToMany(mappedBy = "institution")
     public List<Employee> getEmployees() {
         return employees;
     }
-
-    @ManyToMany
-    @JoinTable(
-            name="institution_room",
-            joinColumns = @JoinColumn(name ="Institution_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name ="Room_id", referencedColumnName = "id"))
-    private List<Room> includeRooms;
 
 
     public void setEmployees(List<Employee> employees) {
@@ -95,4 +96,7 @@ public class Institution {
     }
 
 
+    public List<Room> getIncludeRooms() {
+        return includeRooms;
+    }
 }
