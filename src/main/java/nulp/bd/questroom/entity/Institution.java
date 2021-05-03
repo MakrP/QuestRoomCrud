@@ -1,7 +1,6 @@
 package nulp.bd.questroom.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -20,7 +19,7 @@ public class Institution {
     private int number;
 
     @OneToMany(mappedBy = "institution")
-    private List<Employee> employees;
+    private List<Actor> actors;
 
     @ManyToMany
     @JoinTable(
@@ -62,13 +61,13 @@ public class Institution {
         this.number = number;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
+    public List<Actor> getEmployees() {
+        return actors;
     }
 
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setEmployees(List<Actor> actors) {
+        this.actors = actors;
     }
 
     @Override

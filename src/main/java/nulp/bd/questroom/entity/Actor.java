@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "actor")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Employee implements Serializable {
+public class Actor implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -40,10 +40,19 @@ public class Employee implements Serializable {
     @ManyToMany
     @JoinTable(
             name = "actor_character",
-            joinColumns = @JoinColumn(name = "Employee_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "Character_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "Actor_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "Personage_id", referencedColumnName = "id")
     )
     private List<Personage> playedPersonages;
+
+    @ManyToMany
+    @JoinTable(
+            name = "reservation_actor",
+            joinColumns = @JoinColumn(name = "Actor_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "Reservation_id",referencedColumnName = "id"))
+    private List<Reservation> reservations;
+
+
 
 
     public void setId(Integer id) {

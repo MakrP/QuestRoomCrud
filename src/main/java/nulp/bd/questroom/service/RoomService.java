@@ -1,8 +1,6 @@
 package nulp.bd.questroom.service;
 
-import nulp.bd.questroom.entity.Employee;
 import nulp.bd.questroom.entity.Room;
-import nulp.bd.questroom.repository.EmployeeRepository;
 import nulp.bd.questroom.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

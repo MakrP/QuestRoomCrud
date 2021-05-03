@@ -11,13 +11,13 @@
 
 </head>
 <body>
+<nav th:insert="fragments/navbar :: navbar"/>
 <div align="center" style="padding: 50px;">
     <h1 class="display-2">Rooms</h1>
     <br/><br/>
     <table class="table table-striped" >
         <thead>
         <tr>
-            <th scope="col">Room ID</th>
             <th scope="col">Title</th>
             <th scope="col">Price</th>
             <th scope="col">Max Person</th>
@@ -30,7 +30,6 @@
         </thead>
         <tbody>
         <tr th:each="room : ${institution.includeRooms}">
-            <td th:text="${room.id}">Room ID</td>
             <td th:text="${room.title}">Title</td>
             <td th:text="${room.price}">Price</td>
             <td th:text="${room.maxPerson}">Max Person</td>

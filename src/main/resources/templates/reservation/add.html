@@ -11,37 +11,15 @@
     <title>Create New Product</title>
 </head>
 <body>
+<nav th:insert="/fragments/navbar :: navbar"/>
 <div align="center">
     <h1>Create Reservation</h1>
     <br/>
-    <form action="#" th:action="@{/reservation/save}" th:object="${reservation}"
+    <form action="#" th:action="@{'/reservation/' + ${c_institution.id} + '/' + ${c_room.id} + '/save'}"
+          th:object="${reservation}"
           method="post">
 
         <table border="0" cellpadding="10">
-            <tr th:if="${reservation.institution == null}">
-                <td>Institution:</td>
-                <td>
-                    <select th:field="*{institution}">
-                        <option th:each="institution : ${institutions}"
-                                th:value="${institution.id}"
-                                th:text="|${institution.city},${institution.street},${institution.number}|">
-                        </option>
-                    </select>
-                </td>
-            </tr>
-
-            <tr th:if="${reservation.room == null}">
-                <td>Room:</td>
-                <td>
-                    <select th:field="*{room}">
-                        <option th:each="room : ${rooms}"
-                                th:value="${room.id}"
-                                th:text="${room.title}">
-                        </option>
-                    </select>
-                </td>
-            </tr>
-
             <tr>
                 <td>Client:</td>
                 <td>
@@ -53,7 +31,6 @@
                     </select>
                 </td>
             </tr>
-
             <tr>
                 <td>Reservation Time:</td>
                 <td><input type="datetime-local" th:field="*{reservationTime}"/></td>

@@ -11,14 +11,13 @@
 
 </head>
 <body>
-<div align="center">
-    <h1>Reservations</h1>
-    <a href="/reservation/add">Create Reservation</a>
+<nav th:insert="/fragments/navbar :: navbar"/>
+<div  style="padding: 50px;" align="center">
+    <h1 class="display-2">Reservations</h1>
     <br/><br/>
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>Reservation ID</th>
             <th>Institution</th>
             <th>Room</th>
             <th>Client</th>
@@ -31,7 +30,6 @@
         </thead>
         <tbody>
         <tr th:each="reservation : ${reservations}">
-            <td th:text="${reservation.id}">Reservation ID</td>
             <td th:text="|${reservation.institution.city},
                           ${reservation.institution.street},
                           ${reservation.institution.number}|">Institution</td>
@@ -42,10 +40,17 @@
             <td th:text="${reservation.personCount}">Person Count</td>
             <td th:text="${reservation.personCount * reservation.room.price}">Total Price</td>
             <td th:text="${reservation.status.title}">Status</td>
+            <td th:if="${reservation.status.title == 'NEED ACTORS'}">
+                <a class="btn btn-danger"
+                   th:href="@{'/reservation/' + ${reservation.id} + '/actors'}">
+                    Add Actors
+                </a>
+            </td>
             <td>
-                <a th:href="@{'/edit/' + ${reservation.id}}">Edit</a>
-                &nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/delete/' + ${reservation.id}}">Delete</a>
+                <a class="btn btn-success"
+                   th:href="@{'/reservation/' + ${reservation.id} + '/status'}">
+                Change Status
+                </a>
             </td>
         </tr>
         </tbody>

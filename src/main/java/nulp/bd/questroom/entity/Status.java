@@ -18,7 +18,7 @@ public class Status implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @OneToMany(mappedBy = "status")
+    @OneToMany(mappedBy = "status", cascade=CascadeType.ALL)
     private List<Reservation> reservationsWithStatus;
 
 

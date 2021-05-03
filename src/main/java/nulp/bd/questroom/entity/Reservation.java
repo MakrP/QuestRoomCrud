@@ -3,6 +3,8 @@ package nulp.bd.questroom.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "reservation")
@@ -40,6 +42,12 @@ public class Reservation implements Serializable {
     @JoinColumn(name = "institution_id",referencedColumnName = "id")
     private Institution institution;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "reservation_actor",
+            joinColumns = {@JoinColumn(name = "Reservation_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "Actor_id", referencedColumnName = "id")})
+    @MapKeyJoinColumn(name = "Personage_id")
+    private Map<Personage, Actor> actorPersonageMap;
 
 
     public void setId(Integer id) {
@@ -114,5 +122,14 @@ public class Reservation implements Serializable {
 
     public void setInstitution(Institution institution) {
         this.institution = institution;
+    }
+
+
+    public Map<Personage, Actor> getActorPersonageMap() {
+        return actorPersonageMap;
+    }
+
+    public void setActorPersonageMap(Map<Personage, Actor> actorPersonageMap) {
+        this.actorPersonageMap = actorPersonageMap;
     }
 }

@@ -1,9 +1,9 @@
 package nulp.bd.questroom.controller;
 
 
-import nulp.bd.questroom.entity.Employee;
+import nulp.bd.questroom.entity.Actor;
 import nulp.bd.questroom.entity.Institution;
-import nulp.bd.questroom.service.EmployeeService;
+import nulp.bd.questroom.service.ActorService;
 import nulp.bd.questroom.service.InstitutionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,33 +15,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-public class EmployeeController {
+public class ActorController {
 
     @Autowired
-    private EmployeeService service;
+    private ActorService service;
 
     @Autowired
     private InstitutionService institutionService;
 
-    @RequestMapping("/employee")
-    public String showEmployees(Model model) {
-        List<Employee> employees = service.getAll();
-        model.addAttribute("employees", employees);
-        return "employee/show";
+    @RequestMapping("/actor")
+    public String showActors(Model model) {
+        List<Actor> actors = service.getAll();
+        model.addAttribute("actors", actors);
+        return "actor/show";
     }
 
-    @RequestMapping("/employee/add")
+    @RequestMapping("/actor/add")
     public String newEmployeePage(Model model) {
-        Employee employee = new Employee();
+        Actor actor = new Actor();
         List<Institution> institutions = institutionService.getAll();
-        model.addAttribute("employee", employee);
+        model.addAttribute("actor", actor);
         model.addAttribute("institutions", institutions);
-        return "employee/add";
+        return "actor/add";
     }
 
-    @RequestMapping(value = "/employee/save", method = RequestMethod.POST)
-    public String saveInstitution(@ModelAttribute("employee") Employee employee) {
-        service.save(employee);
-        return "redirect:/employee";
+    @RequestMapping(value = "/actor/save", method = RequestMethod.POST)
+    public String saveInstitution(@ModelAttribute("actor") Actor actor) {
+        service.save(actor);
+        return "redirect:/actor";
     }
 }

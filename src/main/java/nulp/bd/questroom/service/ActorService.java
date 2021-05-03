@@ -1,8 +1,8 @@
 package nulp.bd.questroom.service;
 
-import nulp.bd.questroom.entity.Promouter;
-import nulp.bd.questroom.entity.Room;
-import nulp.bd.questroom.repository.PromouterRepository;
+
+import nulp.bd.questroom.entity.Actor;
+import nulp.bd.questroom.repository.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,19 +11,19 @@ import java.util.List;
 
 @Transactional
 @Service
-public class PromouterService {
+public class ActorService {
     @Autowired
-    private PromouterRepository repository;
+    private ActorRepository repository;
 
-    public List<Promouter> getAll() {
+    public List<Actor> getAll() {
         return repository.findAll();
     }
 
-    public void save(Promouter promouter) {
-        repository.save(promouter);
+    public void save(Actor actor) {
+        repository.save(actor);
     }
 
-    public Promouter get(int id) {
+    public Actor get(int id) {
         return repository.findById(id).get();
     }
 

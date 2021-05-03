@@ -6,6 +6,7 @@ import nulp.bd.questroom.entity.Reservation;
 import nulp.bd.questroom.entity.Room;
 import nulp.bd.questroom.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,7 +35,12 @@ public class ReservationService {
     }
 
     public List<Reservation> getByInstitutionAndRoom(Institution institution, Room room) {
-        return repository.getAllByInstitutionAndRoom(institution,room);
+        return repository.getAllByInstitutionAndRoom(institution, room);
     }
+
+    public void addPersonageAndActor( Integer reservationId, Integer actorId, Integer personageId) {
+        repository.addPersonageAndActor(reservationId,actorId,personageId);
+    }
+
 
 }

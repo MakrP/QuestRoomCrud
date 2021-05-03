@@ -27,9 +27,9 @@ public class Personage implements Serializable {
     @JoinTable(
             name = "actor_personage",
             joinColumns = @JoinColumn(name = "Personage_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "Employee_id", referencedColumnName = "id")
+            inverseJoinColumns = @JoinColumn(name = "Actor_id", referencedColumnName = "id")
     )
-    private List<Employee> playedEmployee;
+    private List<Actor> playedActor;
 
 
     @ManyToOne
@@ -73,12 +73,12 @@ public class Personage implements Serializable {
     }
 
 
-    public List<Employee> getPlayedEmployee() {
-        return playedEmployee;
+    public List<Actor> getPlayedActor() {
+        return playedActor;
     }
 
-    public void setPlayedEmployee(List<Employee> playedEmployee) {
-        this.playedEmployee = playedEmployee;
+    public void setPlayedActor(List<Actor> playedActor) {
+        this.playedActor = playedActor;
     }
 
     public Room getRoom() {
