@@ -18,7 +18,7 @@ public class FindOutMethod implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @OneToMany(mappedBy = "findOutMethod")
+    @OneToMany(mappedBy = "findOutMethod", cascade = CascadeType.ALL)
     private List<Client> makeClients;
 
 

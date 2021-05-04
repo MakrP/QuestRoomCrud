@@ -33,15 +33,15 @@ public class Room implements Serializable {
     @Column(name = "duration", nullable = false)
     private Integer duration;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "subject_id", referencedColumnName = "id")
     private Subject subject;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "type_id", referencedColumnName = "id")
     private Type type;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="institution_room",
             joinColumns = @JoinColumn(name ="Room_id",referencedColumnName = "id"),
@@ -49,7 +49,7 @@ public class Room implements Serializable {
     private List<Institution> institutionsInclude;
 
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
     private List<Personage> personages;
 
 

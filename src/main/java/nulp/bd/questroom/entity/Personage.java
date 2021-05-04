@@ -23,7 +23,7 @@ public class Personage implements Serializable {
 
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "actor_personage",
             joinColumns = @JoinColumn(name = "Personage_id", referencedColumnName = "id"),

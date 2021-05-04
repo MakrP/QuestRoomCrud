@@ -26,19 +26,19 @@ public class Reservation implements Serializable {
     @Column(name = "reservation_time", nullable = false)
     private String reservationTime;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Room_id",referencedColumnName = "id")
     private Room room;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "status_id",referencedColumnName = "id")
     private Status status;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Client_id", referencedColumnName = "id")
     private Client client;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "institution_id",referencedColumnName = "id")
     private Institution institution;
 

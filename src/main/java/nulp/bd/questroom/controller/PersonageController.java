@@ -9,9 +9,7 @@ import nulp.bd.questroom.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class PersonageController {
     public String showCharacters(Model model) {
         List<Personage> personages = service.getAll();
         model.addAttribute("personages", personages);
-        return "personage/show";
+        return "/admin/personage/show";
     }
 
     @RequestMapping("/personage/add")
@@ -37,12 +35,18 @@ public class PersonageController {
         List<Room> rooms = roomService.getAll();
         model.addAttribute("personage", personage);
         model.addAttribute("rooms", rooms);
-        return "personage/add";
+        return "/admin/personage/add";
     }
 
     @RequestMapping(value = "/personage/save", method = RequestMethod.POST)
-    public String saveCharacter(@ModelAttribute("personage") Personage personage) {
+    public String savePersonage(@ModelAttribute("personage") Personage personage) {
         service.save(personage);
+        return "redirect:/personage";
+    }
+
+    @RequestMapping("/personage/{personageId}/delete")
+    public String deletePersonage(@PathVariable Integer personageId) {
+        service.delete(personageId);
         return "redirect:/personage";
     }
 }

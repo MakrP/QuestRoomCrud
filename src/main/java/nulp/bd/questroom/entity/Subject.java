@@ -18,7 +18,7 @@ public class Subject implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @OneToMany(mappedBy = "subject")
+    @OneToMany(mappedBy = "subject",cascade = CascadeType.ALL)
     private List<Room> rooms;
 
     public void setId(Integer id) {

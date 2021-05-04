@@ -18,7 +18,7 @@ public class Type implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @OneToMany(mappedBy = "type")
+    @OneToMany(mappedBy = "type",cascade = CascadeType.ALL)
     private List<Room> rooms;
 
     public void setId(Integer id) {

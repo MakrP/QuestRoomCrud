@@ -31,7 +31,7 @@ public class Client implements Serializable {
     private Integer visitsNumber;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "findoutmethod_id", referencedColumnName = "id")
     private FindOutMethod findOutMethod;
 

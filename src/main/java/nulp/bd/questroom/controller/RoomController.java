@@ -29,11 +29,18 @@ public class RoomController {
     @Autowired
     private TypeService typeService;
 
-    @RequestMapping("/room")
+    @RequestMapping("/manager/room")
     public String showRooms(Model model) {
         List<Room> listRooms = service.getAll();
         model.addAttribute("rooms", listRooms);
-        return "room/show";
+        return "/manager/room/show";
+    }
+
+    @RequestMapping("/admin/room")
+    public String showAdminRooms(Model model) {
+        List<Room> listRooms = service.getAll();
+        model.addAttribute("rooms", listRooms);
+        return "/admin/room/show";
     }
 
     @RequestMapping("/room/add")
@@ -44,13 +51,13 @@ public class RoomController {
         model.addAttribute("room", room);
         model.addAttribute("subjects", possibleSubjects);
         model.addAttribute("types", possibleTypes);
-        return "room/add";
+        return "/admin/room/add";
     }
 
     @RequestMapping(value = "/room/save", method = RequestMethod.POST)
     public String saveRoom(@ModelAttribute("room") Room room) {
         service.save(room);
-        return "redirect:/institution";
+        return "redirect:/admin/room";
     }
 
 }

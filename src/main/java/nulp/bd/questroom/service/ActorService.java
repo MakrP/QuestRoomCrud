@@ -30,4 +30,8 @@ public class ActorService {
     public void delete(int id) {
         repository.deleteById(id);
     }
+
+    public void addNewPersonageToActor(int actorId, int personageId) {
+        repository.addNewPersonageToActor(actorId,personageId);
+    }
 }

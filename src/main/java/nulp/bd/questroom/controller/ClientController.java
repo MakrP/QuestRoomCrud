@@ -22,26 +22,26 @@ public class ClientController {
     @Autowired
     private FindOutMethodService fomService;
 
-    @RequestMapping("/client")
+    @RequestMapping("/admin/client")
     public String showEmployees(Model model) {
         List<Client> clients = service.getAll();
         model.addAttribute("clients", clients);
-        return "client/show";
+        return "/client/show";
     }
 
-    @RequestMapping("/client/add")
+    @RequestMapping("/manager/client/add")
     public String newEmployeePage(Model model) {
         Client client = new Client();
         List<FindOutMethod> foMethods = fomService.getAll();
         model.addAttribute("foMethods", foMethods);
         model.addAttribute("client", client);
-        return "client/add";
+        return "/manager/client/add";
     }
 
     @RequestMapping(value = "/client/save", method = RequestMethod.POST)
     public String saveInstitution(@ModelAttribute("client") Client client) {
         client.setVisitsNumber(0);
         service.save(client);
-        return "redirect:/client";
+        return "redirect:/manager/institution";
     }
 }

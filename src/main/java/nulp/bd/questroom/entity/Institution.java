@@ -18,10 +18,10 @@ public class Institution {
     @Column(name = "number", nullable = false)
     private int number;
 
-    @OneToMany(mappedBy = "institution")
+    @OneToMany(mappedBy = "institution", cascade = CascadeType.ALL)
     private List<Actor> actors;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="institution_room",
             joinColumns = @JoinColumn(name ="Institution_id",referencedColumnName = "id"),
